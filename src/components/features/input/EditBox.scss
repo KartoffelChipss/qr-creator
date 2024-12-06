@@ -1,0 +1,118 @@
+@use "../../../variables" as *;
+
+.inputSection {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0;
+    height: fit-content;
+
+    h3 {
+        margin: 30px 0;
+        margin-bottom: 5px;
+        font-size: 1.5rem;
+    }
+
+    p {
+        margin: 0 0 20px;
+        color: $font-muted;
+    }
+
+    .space {
+        width: 100%;
+        height: 10px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        button {
+            &.active {
+                background-color: rgba(48, 85, 152, 0.2);
+                border-color: $accent-color-medium;
+
+                &:focus {
+                    background-color: rgba(48, 85, 152, 0.4);
+                }
+            }
+        }
+    }
+
+    input, textarea {
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        gap: 8px;
+
+        svg {
+            --hw: 20px;
+            height: var(--hw);
+            width: var(--hw);
+        }
+    }
+
+    .inputBox {
+        label {
+            margin-bottom: 0px;
+        }
+
+        input {
+            margin-top: 5px;
+        }
+
+        &.checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            input {
+                width: fit-content;
+                margin: 0;
+                margin-bottom: 3px;
+            }
+
+            label {
+                margin: 0;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .horizontalInputs {
+        display: flex;
+        gap: 15px;
+
+        .inputBox.grow-1 {
+            flex-grow: 1;
+        }
+
+        .inputBox.grow-2 {
+            flex-grow: 2;
+        }
+    }
+
+    .radioList {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .securityConcern {
+        display: flex;
+        //align-items: center;
+        gap: 8px;
+
+        margin-bottom: 20px;
+
+        svg {
+            --hw: 20px;
+            height: var(--hw);
+            width: var(--hw);
+        }
+    }
+}

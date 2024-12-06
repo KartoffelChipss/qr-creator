@@ -1,0 +1,8 @@
+main.main {
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 950px) {
+        flex-direction: column;
+    }
+}

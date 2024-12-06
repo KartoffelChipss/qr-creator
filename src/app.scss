@@ -1,25 +1,21 @@
+@use "variables" as *;
+
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    --padding: 20px;
+    max-width: 1280px;
+    height: 100vh;
+    width: calc(100% - var(--padding) * 2);
+    padding: 0 var(--padding);
+    margin: 0 auto;
+    background-color: $bg-color;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.preact:hover {
-  filter: drop-shadow(0 0 2em #673ab8aa);
-}
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
 
-.card {
-  padding: 2em;
-}
+    display: flex;
 
-.read-the-docs {
-  color: #888;
+    background-color: $bg-color;
 }

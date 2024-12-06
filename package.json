@@ -9,7 +9,11 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "preact": "^10.25.0"
+        "@types/qrcode": "^1.5.5",
+        "dazzle-icons": "^1.0.7",
+        "preact": "^10.25.0",
+        "qrcode": "^1.5.4",
+        "wouter": "^3.3.5"
     },
     "devDependencies": {
         "@preact/preset-vite": "^2.9.1",
