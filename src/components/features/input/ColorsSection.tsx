@@ -1,6 +1,6 @@
 import {FunctionalComponent} from "preact";
 import {useState} from "preact/hooks";
-import {HexAlphaColorPicker, HexColorInput, HexColorPicker, RgbaStringColorPicker} from "react-colorful";
+import {HexAlphaColorPicker, HexColorInput} from "react-colorful";
 import {useDebouncyEffect} from "use-debouncy";
 
 export interface ColorState {
