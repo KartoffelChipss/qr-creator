@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite --host",
+        "dev": "vite --host --port 8000",
         "build": "tsc -b && vite build",
         "preview": "vite preview"
     },
@@ -12,7 +12,10 @@
         "@types/qrcode": "^1.5.5",
         "dazzle-icons": "^1.0.7",
         "preact": "^10.25.0",
+        "qr-code-styling": "^1.8.4",
         "qrcode": "^1.5.4",
+        "react-colorful": "^5.6.1",
+        "use-debouncy": "^5.0.1",
         "wouter": "^3.3.5"
     },
     "devDependencies": {

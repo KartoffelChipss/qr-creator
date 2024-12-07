@@ -9,8 +9,10 @@
     max-width: 300px;
 
     .qrCode {
-        width: 100%;
+        width: 300px;
+        height: 300px;
         border-radius: 8px;
+        overflow: hidden;
         border: 1px solid rgba(72, 72, 72, 0.3);
         background-color: rgba(72, 72, 72, 0.3);
     }
