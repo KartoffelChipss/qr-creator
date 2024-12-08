@@ -1,0 +1,19 @@
+@use "../../../variables.scss" as *;
+
+main.pageNotFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 1rem;
+        margin: 0;
+        margin-bottom: 20px;
+        color: $font-muted;
+    }
+}
