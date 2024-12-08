@@ -72,6 +72,7 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
                 imageSize: currentLogo.size,
                 hideBackgroundDots: currentLogo.hideBackgroundDots,
                 crossOrigin: "anonymous",
+                saveAsBlob: true,
             }
         });
     };

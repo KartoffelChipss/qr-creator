@@ -22,7 +22,7 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({
         width: 300,
         height: 300,
         margin: 15,
-        type: "svg",
+        type: "canvas",
         dotsOptions: {
             color: "#000000",
             type: "square" as DotType,
