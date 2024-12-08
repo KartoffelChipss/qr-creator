@@ -106,7 +106,7 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
             <Accordion
                 title="Colors"
                 icon={<Palette />}
-                maxHeight={600}
+                maxHeight={900}
                 isOpen={openIndex === 1}
                 onToggle={() => handleToggle(1)}
             >
@@ -115,7 +115,7 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
             <Accordion
                 title="Shapes"
                 icon={<Shapes />}
-                maxHeight={600}
+                maxHeight={450}
                 isOpen={openIndex === 2}
                 onToggle={() => handleToggle(2)}
             >

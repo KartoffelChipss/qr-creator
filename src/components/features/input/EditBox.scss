@@ -128,11 +128,15 @@
 
     .pickers {
         display: flex;
-        flex-wrap: wrap;
         gap: 30px;
 
         .colorPicker {
             flex-grow: 1;
+        }
+
+        @media screen and (max-width: 950px) {
+            flex-direction: column;
+            gap: 0;
         }
     }
 
