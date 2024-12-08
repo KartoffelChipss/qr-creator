@@ -29,7 +29,7 @@ const ColorsSection: FunctionalComponent<ColorsSectionProps> = ({ onValueChange 
     useDebouncyEffect(() => handleValueChange(colors), 1, [colors])
 
     return (
-        <div>
+        <>
             <div class="pickers">
                 <label className={"colorPicker"}>
                     <span className={"label"}>Background</span>
@@ -71,7 +71,7 @@ const ColorsSection: FunctionalComponent<ColorsSectionProps> = ({ onValueChange 
                 </span>
                 </label>
             </div>
-        </div>
+        </>
     );
 }
 

@@ -1,7 +1,7 @@
 import "./ResultBox.scss";
 import { FunctionalComponent } from "preact";
 import { useEffect, useRef } from "preact/hooks";
-import QRCodeStyling, { Options, DotType, CornerSquareType, CornerDotType } from "qr-code-styling";
+import QRCodeStyling, { Options, DotType, CornerSquareType, CornerDotType, FileExtension } from "qr-code-styling";
 import { ArrowNarrowBottomAlignment, Code } from "dazzle-icons/src";
 
 interface ResultBoxProps {
@@ -21,7 +21,8 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({
     const defaultOptions: Partial<Options> = {
         width: 300,
         height: 300,
-        margin: 4,
+        margin: 15,
+        type: "svg",
         dotsOptions: {
             color: "#000000",
             type: "square" as DotType,
@@ -61,9 +62,9 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({
             qrCodeRef.current.innerHTML = "";
             qrCode.current.append(qrCodeRef.current);
         }
-    }, [data, options]);
+    }, [data, options, logo]);
 
-    const downloadImage = (format: "png" | "svg") => {
+    const downloadImage = (format: FileExtension) => {
         if (qrCode.current) {
             qrCode.current.download({
                 name: "qrcode",

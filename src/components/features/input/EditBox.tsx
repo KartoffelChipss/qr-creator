@@ -6,6 +6,7 @@ import {useState} from "preact/hooks";
 import {ImageSquare, Palette, Pen, Shapes} from "dazzle-icons/src";
 import {Options} from "qr-code-styling";
 import ColorsSection, {ColorState} from "./ColorsSection.tsx";
+import ShapesSection, {ShapesState} from "./ShapesSection.tsx";
 
 interface InputSectionProps {
     onDataSubmit?: (input: string) => void;
@@ -21,6 +22,12 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
         cornerSquare: "#000000",
         cornerDot: "#000000",
     });
+    const [shapes, setShapes] = useState<ShapesState>({
+        margin: 15,
+        dots: "square",
+        cornerSquare: "square",
+        cornerDot: "square",
+    });
 
     const handleToggle = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -30,28 +37,38 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
         if (onDataSubmit) onDataSubmit(input);
     }
 
-    const submitColors = (colors: ColorState) => {
-        setColors(colors);
-        handleStyleSubmit();
-    }
+    const updateStyles = (updatedColors?: ColorState, updatedShapes?: ShapesState) => {
+        const currentColors = updatedColors || colors;
+        const currentShapes = updatedShapes || shapes;
 
-    const handleStyleSubmit = () => {
-        const options: Partial<Options> = {
+        if (onStyleSubmit) onStyleSubmit({
+            margin: currentShapes.margin,
             backgroundOptions: {
-                color: colors.background,
+                color: currentColors.background,
             },
             dotsOptions: {
-                color: colors.dots,
+                color: currentColors.dots,
+                type: currentShapes.dots,
             },
             cornersSquareOptions: {
-                color: colors.cornerSquare,
+                color: currentColors.cornerSquare,
+                type: currentShapes.cornerSquare,
             },
             cornersDotOptions: {
-                color: colors.cornerDot,
+                color: currentColors.cornerDot,
+                type: currentShapes.cornerDot,
             },
-        }
+        });
+    };
 
-        if (onStyleSubmit) onStyleSubmit(options);
+    const submitColors = (newColors: ColorState) => {
+        setColors(newColors);
+        updateStyles(newColors, shapes);
+    }
+
+    const submitShapes = (newShapes: ShapesState) => {
+        setShapes(newShapes);
+        updateStyles(colors, newShapes);
     }
 
     return (
@@ -77,19 +94,11 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
             <Accordion
                 title="Shapes"
                 icon={<Shapes />}
-                maxHeight={300}
+                maxHeight={600}
                 isOpen={openIndex === 2}
                 onToggle={() => handleToggle(2)}
             >
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p><p>This is the content for Accordion 2.</p><p>This is the
-                content for Accordion 2.</p><p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p><p>This is the content for Accordion 2.</p><p>This is the
-                content for Accordion 2.</p><p>This is the content for Accordion 2.</p><p>This is the content for
-                Accordion 2.</p>
+                <ShapesSection onValueChange={submitShapes} />
             </Accordion>
             <Accordion
                 title="Logo"
