@@ -7,6 +7,7 @@ import {ImageSquare, Palette, Pen, Shapes} from "dazzle-icons/src";
 import {Options} from "qr-code-styling";
 import ColorsSection, {ColorState} from "./ColorsSection.tsx";
 import ShapesSection, {ShapesState} from "./ShapesSection.tsx";
+import LogoSection, {LogoState} from "./LogoSection.tsx";
 
 interface InputSectionProps {
     onDataSubmit?: (input: string) => void;
@@ -28,6 +29,12 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
         cornerSquare: "square",
         cornerDot: "square",
     });
+    const [logo, setLogo] = useState<LogoState>({
+        url: undefined,
+        hideBackgroundDots: true,
+        size: 0.5,
+        margin: 7,
+    });
 
     const handleToggle = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -37,11 +44,13 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
         if (onDataSubmit) onDataSubmit(input);
     }
 
-    const updateStyles = (updatedColors?: ColorState, updatedShapes?: ShapesState) => {
+    const updateStyles = (updatedColors?: ColorState, updatedShapes?: ShapesState, updatedLogo?: LogoState) => {
         const currentColors = updatedColors || colors;
         const currentShapes = updatedShapes || shapes;
+        const currentLogo = updatedLogo || logo;
 
         if (onStyleSubmit) onStyleSubmit({
+            image: currentLogo.size <= 0 ? undefined : currentLogo.url,
             margin: currentShapes.margin,
             backgroundOptions: {
                 color: currentColors.background,
@@ -58,17 +67,28 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
                 color: currentColors.cornerDot,
                 type: currentShapes.cornerDot,
             },
+            imageOptions: {
+                margin: currentLogo.margin,
+                imageSize: currentLogo.size,
+                hideBackgroundDots: currentLogo.hideBackgroundDots,
+                crossOrigin: "anonymous",
+            }
         });
     };
 
     const submitColors = (newColors: ColorState) => {
         setColors(newColors);
-        updateStyles(newColors, shapes);
+        updateStyles(newColors, shapes, logo);
     }
 
     const submitShapes = (newShapes: ShapesState) => {
         setShapes(newShapes);
-        updateStyles(colors, newShapes);
+        updateStyles(colors, newShapes, logo);
+    }
+
+    const submitLogo = (newLogo: LogoState) => {
+        setLogo(newLogo);
+        updateStyles(colors, shapes, newLogo);
     }
 
     return (
@@ -103,19 +123,11 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({ onDataSubmit, 
             <Accordion
                 title="Logo"
                 icon={<ImageSquare />}
-                maxHeight={300}
+                maxHeight={200}
                 isOpen={openIndex === 3}
                 onToggle={() => handleToggle(3)}
             >
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p><p>This is the content for Accordion 2.</p><p>This is the
-                content for Accordion 2.</p><p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p>
-                <p>This is the content for Accordion 2.</p><p>This is the content for Accordion 2.</p><p>This is the
-                content for Accordion 2.</p><p>This is the content for Accordion 2.</p><p>This is the content for
-                Accordion 2.</p>
+                <LogoSection onValueChange={submitLogo} />
             </Accordion>
         </div>
     );

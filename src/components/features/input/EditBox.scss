@@ -116,6 +116,16 @@
         }
     }
 
+    .horizontalSliders {
+        width: 100%;
+        display: flex;
+        gap: 30px;
+
+        label {
+            width: 100%;
+        }
+    }
+
     .pickers {
         display: flex;
         flex-wrap: wrap;

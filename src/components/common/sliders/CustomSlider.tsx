@@ -25,7 +25,7 @@ const CustomSlider: FunctionalComponent<CustomSliderProps> = ({ defaultValue, on
                 min={min}
                 max={max}
                 defaultValue={defaultValue}
-                onChange={(e) => handleValueChange(parseInt(e.currentTarget.value))}
+                onChange={(e) => handleValueChange(parseFloat(e.currentTarget.value))}
                 step={step}
             />
             <div class="value">

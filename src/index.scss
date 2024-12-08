@@ -297,6 +297,20 @@ input, select {
     }
 }
 
+.iconText {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: $font-muted;
+
+    svg {
+        --hw: 25px;
+        height: var(--hw);
+        width: var(--hw);
+    }
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: Montserrat, sans-serif;
     margin: 0;
