@@ -1,9 +1,9 @@
 import { FunctionalComponent } from 'preact';
 import { CustomInputProps } from './interfaces.ts';
 import { useState } from 'preact/hooks';
-import { RefreshCcwAlt1 } from 'dazzle-icons/src';
 import MapPicker from '../../../common/MapPicker.tsx';
 import './customInputs.scss';
+import { RefreshCcw } from 'lucide-preact';
 
 const GeoInput: FunctionalComponent<CustomInputProps> = ({ onInput }) => {
     const [latitude, setLatitude] = useState<number>(37.2431);
@@ -60,7 +60,7 @@ const GeoInput: FunctionalComponent<CustomInputProps> = ({ onInput }) => {
             />
 
             <button onClick={() => handleSubmit()} className={'blue'}>
-                <RefreshCcwAlt1 />
+                <RefreshCcw />
                 Generate
             </button>
         </>

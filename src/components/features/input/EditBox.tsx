@@ -3,11 +3,11 @@ import './EditBox.scss';
 import Accordion from '../../common/Accordion/Accordion.tsx';
 import ContentSection from './ContentSection.tsx';
 import { useState } from 'preact/hooks';
-import { ImageSquare, Palette, Pen, Shapes } from 'dazzle-icons/src';
 import { Options } from 'qr-code-styling';
 import ColorsSection, { ColorState } from './ColorsSection.tsx';
 import ShapesSection, { ShapesState } from './ShapesSection.tsx';
 import LogoSection, { LogoState } from './LogoSection.tsx';
+import { Image, Paintbrush, Pencil, ShapesIcon } from 'lucide-preact';
 
 interface InputSectionProps {
     onDataSubmit?: (input: string) => void;
@@ -104,7 +104,7 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({
         <div className={'inputSection card'}>
             <Accordion
                 title="Content"
-                icon={<Pen />}
+                icon={<Pencil />}
                 maxHeight={1100}
                 isOpen={openIndex === 0}
                 onToggle={() => handleToggle(0)}
@@ -113,7 +113,7 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({
             </Accordion>
             <Accordion
                 title="Colors"
-                icon={<Palette />}
+                icon={<Paintbrush />}
                 maxHeight={900}
                 isOpen={openIndex === 1}
                 onToggle={() => handleToggle(1)}
@@ -122,7 +122,7 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({
             </Accordion>
             <Accordion
                 title="Shapes"
-                icon={<Shapes />}
+                icon={<ShapesIcon />}
                 maxHeight={450}
                 isOpen={openIndex === 2}
                 onToggle={() => handleToggle(2)}
@@ -131,7 +131,7 @@ const EditBox: Preact.FunctionalComponent<InputSectionProps> = ({
             </Accordion>
             <Accordion
                 title="Logo"
-                icon={<ImageSquare />}
+                icon={<Image />}
                 maxHeight={200}
                 isOpen={openIndex === 3}
                 onToggle={() => handleToggle(3)}

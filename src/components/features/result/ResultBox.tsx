@@ -1,8 +1,14 @@
-import "./ResultBox.scss";
-import { FunctionalComponent } from "preact";
-import { useEffect, useRef } from "preact/hooks";
-import QRCodeStyling, { Options, DotType, CornerSquareType, CornerDotType, FileExtension } from "qr-code-styling";
-import { ArrowNarrowBottomAlignment, Code } from "dazzle-icons/src";
+import { Code, Download } from 'lucide-preact';
+import './ResultBox.scss';
+import { FunctionalComponent } from 'preact';
+import { useEffect, useRef } from 'preact/hooks';
+import QRCodeStyling, {
+    Options,
+    DotType,
+    CornerSquareType,
+    CornerDotType,
+    FileExtension,
+} from 'qr-code-styling';
 
 interface ResultBoxProps {
     data: string;
@@ -11,10 +17,10 @@ interface ResultBoxProps {
 }
 
 const ResultBox: FunctionalComponent<ResultBoxProps> = ({
-                                                            data,
-                                                            logo,
-                                                            options = {},
-                                                        }) => {
+    data,
+    logo,
+    options = {},
+}) => {
     const qrCodeRef = useRef<HTMLDivElement>(null);
     const qrCode = useRef<QRCodeStyling>();
 
@@ -22,27 +28,27 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({
         width: 300,
         height: 300,
         margin: 15,
-        type: "canvas",
+        type: 'canvas',
         dotsOptions: {
-            color: "#000000",
-            type: "square" as DotType,
+            color: '#000000',
+            type: 'square' as DotType,
         },
         cornersSquareOptions: {
-            color: "#000000",
-            type: "square" as CornerSquareType,
+            color: '#000000',
+            type: 'square' as CornerSquareType,
         },
         cornersDotOptions: {
-            color: "#000000",
-            type: "square" as CornerDotType,
+            color: '#000000',
+            type: 'square' as CornerDotType,
         },
         backgroundOptions: {
-            color: "#ffffff",
+            color: '#ffffff',
         },
         imageOptions: {
-            crossOrigin: "anonymous",
+            crossOrigin: 'anonymous',
             margin: 5,
             hideBackgroundDots: true,
-        }
+        },
     };
 
     const mergedOptions: Partial<Options> = { ...defaultOptions, ...options };
@@ -59,7 +65,7 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({
         }
 
         if (qrCodeRef.current) {
-            qrCodeRef.current.innerHTML = "";
+            qrCodeRef.current.innerHTML = '';
             qrCode.current.append(qrCodeRef.current);
         }
     }, [data, options, logo]);
@@ -67,7 +73,7 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({
     const downloadImage = (format: FileExtension) => {
         if (qrCode.current) {
             qrCode.current.download({
-                name: "qrcode",
+                name: 'qrcode',
                 extension: format,
             });
         }
@@ -77,14 +83,14 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({
         <div className="resultbox card">
             <div ref={qrCodeRef} className="qrCode"></div>
 
-            <span className={"resultString"}>{data}</span>
+            <span className={'resultString'}>{data}</span>
 
             <div className="btns">
-                <button className={"blue"} onClick={() => downloadImage("png")}>
-                    <ArrowNarrowBottomAlignment />
+                <button className={'blue'} onClick={() => downloadImage('png')}>
+                    <Download />
                     Download PNG
                 </button>
-                <button onClick={() => downloadImage("svg")}>
+                <button onClick={() => downloadImage('svg')}>
                     <Code />
                     Download SVG
                 </button>

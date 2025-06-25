@@ -1,7 +1,7 @@
 import { FunctionalComponent } from 'preact';
 import { CustomInputProps } from './interfaces.ts';
 import { useState } from 'preact/hooks';
-import { RefreshCcwAlt1 } from 'dazzle-icons/src';
+import { RefreshCcw } from 'lucide-preact';
 
 const EpcInput: FunctionalComponent<CustomInputProps> = ({ onInput }) => {
     const [bic, setBic] = useState<string>('');
@@ -92,7 +92,7 @@ const EpcInput: FunctionalComponent<CustomInputProps> = ({ onInput }) => {
             />
 
             <button onClick={() => handleSubmit()} className={'blue'}>
-                <RefreshCcwAlt1 />
+                <RefreshCcw />
                 Generate
             </button>
         </>

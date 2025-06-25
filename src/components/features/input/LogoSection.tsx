@@ -1,7 +1,7 @@
-import { FunctionalComponent } from "preact";
-import { useState } from "preact/hooks";
-import CustomSlider from "../../common/sliders/CustomSlider.tsx";
-import {TriangleExclamation} from "dazzle-icons/src";
+import { FunctionalComponent } from 'preact';
+import { useState } from 'preact/hooks';
+import CustomSlider from '../../common/sliders/CustomSlider.tsx';
+import { TriangleAlert } from 'lucide-preact';
 
 export interface LogoState {
     url?: string;
@@ -14,7 +14,9 @@ interface LogoSectionProps {
     onValueChange?: (logoState: LogoState) => void;
 }
 
-const LogoSection: FunctionalComponent<LogoSectionProps> = ({ onValueChange }) => {
+const LogoSection: FunctionalComponent<LogoSectionProps> = ({
+    onValueChange,
+}) => {
     const [logoState, setLogoState] = useState<LogoState>({
         url: undefined,
         hideBackgroundDots: true,
@@ -36,10 +38,11 @@ const LogoSection: FunctionalComponent<LogoSectionProps> = ({ onValueChange }) =
                     url: dataUrl,
                 }));
 
-                if (onValueChange) onValueChange({
-                    ...logoState,
-                    url: dataUrl,
-                });
+                if (onValueChange)
+                    onValueChange({
+                        ...logoState,
+                        url: dataUrl,
+                    });
             };
 
             reader.readAsDataURL(file);
@@ -53,38 +56,42 @@ const LogoSection: FunctionalComponent<LogoSectionProps> = ({ onValueChange }) =
 
     return (
         <>
-            <input
-                type="file"
-                onChange={handleFileChange}
-                accept={"image/*"}
-            />
+            <input type="file" onChange={handleFileChange} accept={'image/*'} />
             <div class="horizontalSliders">
-                <label className={"shapePicker"}>
-                    <span className={"label"}>Size</span>
+                <label className={'shapePicker'}>
+                    <span className={'label'}>Size</span>
                     <CustomSlider
                         defaultValue={logoState.size}
                         min={0}
                         max={1}
-                        step={.1}
-                        onUserInput={(value) => updateLogo({...logoState, size: value})}
+                        step={0.1}
+                        onUserInput={(value) =>
+                            updateLogo({ ...logoState, size: value })
+                        }
                     />
                 </label>
-                <label className={"shapePicker"}>
-                    <span className={"label"}>Margin</span>
+                <label className={'shapePicker'}>
+                    <span className={'label'}>Margin</span>
                     <CustomSlider
                         defaultValue={logoState.margin}
                         min={0}
                         max={15}
                         step={1}
-                        onUserInput={(value) => updateLogo({...logoState, margin: value})}
+                        onUserInput={(value) =>
+                            updateLogo({ ...logoState, margin: value })
+                        }
                     />
                 </label>
             </div>
             {logoState.size > 0.5 && (
-                <span className={"iconText"}>
-                <TriangleExclamation />
-                <span>When using a large logo, the QR code may become unreadable. Please ensure that the QR code is still scannable.</span>
-            </span>
+                <span className={'iconText'}>
+                    <TriangleAlert />
+                    <span>
+                        When using a large logo, the QR code may become
+                        unreadable. Please ensure that the QR code is still
+                        scannable.
+                    </span>
+                </span>
             )}
         </>
     );

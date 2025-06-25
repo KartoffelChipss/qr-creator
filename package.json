@@ -10,8 +10,8 @@
     },
     "dependencies": {
         "@types/qrcode": "^1.5.5",
-        "dazzle-icons": "^1.0.7",
         "leaflet": "^1.9.4",
+        "lucide-preact": "^0.523.0",
         "preact": "^10.25.0",
         "qr-code-styling": "^1.8.4",
         "qrcode": "^1.5.4",

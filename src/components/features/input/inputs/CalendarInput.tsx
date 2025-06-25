@@ -1,7 +1,7 @@
 import { FunctionalComponent } from 'preact';
 import { CustomInputProps } from './interfaces.ts';
 import { useState } from 'preact/hooks';
-import { RefreshCcwAlt1 } from 'dazzle-icons/src';
+import { RefreshCcw } from 'lucide-preact';
 
 const formatToICalDate = (localDate: string): string => {
     const date = new Date(localDate);
@@ -62,7 +62,7 @@ const CalendarInput: FunctionalComponent<CustomInputProps> = ({ onInput }) => {
             />
 
             <button onClick={() => handleSubmit()} className={'blue'}>
-                <RefreshCcwAlt1 />
+                <RefreshCcw />
                 Generate
             </button>
         </>
