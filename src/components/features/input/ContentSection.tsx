@@ -7,6 +7,7 @@ import WiFiInput from './inputs/WiFiInput.tsx';
 import { useState } from 'preact/hooks';
 import VCardInput from './inputs/VCardInput.tsx';
 import CalendarInput from './inputs/CalendarInput.tsx';
+import GeoInput from './inputs/GeoInput.tsx';
 
 type ContentSection =
     | 'url'
@@ -15,7 +16,8 @@ type ContentSection =
     | 'email'
     | 'sms'
     | 'wifi'
-    | 'calendar';
+    | 'calendar'
+    | 'geo';
 
 const ContentSection: FunctionalComponent<{
     onSubmit?: (input: string) => void;
@@ -71,6 +73,12 @@ const ContentSection: FunctionalComponent<{
                 >
                     SMS
                 </button>
+                <button
+                    onClick={() => setSection('geo')}
+                    className={section === 'geo' ? 'active' : ''}
+                >
+                    Location
+                </button>
             </nav>
 
             {section === 'url' && (
@@ -99,6 +107,10 @@ const ContentSection: FunctionalComponent<{
 
             {section === 'sms' && (
                 <SmsInput onInput={(input) => submitData(input)} />
+            )}
+
+            {section === 'geo' && (
+                <GeoInput onInput={(input) => submitData(input)} />
             )}
         </>
     );

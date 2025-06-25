@@ -1,0 +1,17 @@
+.coordsBox {
+    display: flex;
+    gap: 20px;
+
+    .inputBox {
+        flex-grow: 1;
+    }
+
+    @media screen and (max-width: 500px) {
+        flex-direction: column;
+        gap: 0px;
+
+        .inputBox {
+            width: 100%;
+        }
+    }
+}

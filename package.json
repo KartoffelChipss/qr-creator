@@ -11,18 +11,20 @@
     "dependencies": {
         "@types/qrcode": "^1.5.5",
         "dazzle-icons": "^1.0.7",
+        "leaflet": "^1.9.4",
         "preact": "^10.25.0",
         "qr-code-styling": "^1.8.4",
         "qrcode": "^1.5.4",
         "react-colorful": "^5.6.1",
+        "react-select": "^5.8.3",
         "use-debouncy": "^5.0.1",
-        "wouter": "^3.3.5",
-        "react-select": "^5.8.3"
+        "wouter": "^3.3.5"
     },
     "devDependencies": {
         "@preact/preset-vite": "^2.9.1",
+        "@types/leaflet": "^1.9.19",
+        "sass": "^1.80.4",
         "typescript": "~5.6.2",
-        "vite": "^6.0.1",
-        "sass": "^1.80.4"
+        "vite": "^6.0.1"
     }
 }
