@@ -1,15 +1,17 @@
 import { FunctionalComponent } from 'preact';
+import { useState } from 'preact/hooks';
+
 import UrlInput from './inputs/UrlInput.tsx';
 import TextInput from './inputs/TextInput.tsx';
 import EMailInput from './inputs/EMailInput.tsx';
 import SmsInput from './inputs/SmsInput.tsx';
 import WiFiInput from './inputs/WiFiInput.tsx';
-import { useState } from 'preact/hooks';
 import VCardInput from './inputs/VCardInput.tsx';
 import CalendarInput from './inputs/CalendarInput.tsx';
 import GeoInput from './inputs/GeoInput.tsx';
+import EpcInput from './inputs/EpcInput.tsx';
 
-type ContentSection =
+type ContentSectionType =
     | 'url'
     | 'text'
     | 'vcard'
@@ -17,101 +19,54 @@ type ContentSection =
     | 'sms'
     | 'wifi'
     | 'calendar'
-    | 'geo';
+    | 'geo'
+    | 'epc';
+
+const sectionConfig: {
+    key: ContentSectionType;
+    label: string;
+    Component: FunctionalComponent<{ onInput: (input: string) => void }>;
+}[] = [
+    { key: 'url', label: 'URL', Component: UrlInput },
+    { key: 'text', label: 'Text', Component: TextInput },
+    { key: 'wifi', label: 'WiFi', Component: WiFiInput },
+    { key: 'vcard', label: 'vCard', Component: VCardInput },
+    { key: 'calendar', label: 'Calendar Event', Component: CalendarInput },
+    { key: 'email', label: 'Email', Component: EMailInput },
+    { key: 'sms', label: 'SMS', Component: SmsInput },
+    { key: 'geo', label: 'Geo Location', Component: GeoInput },
+    { key: 'epc', label: 'EPC', Component: EpcInput },
+];
 
 const ContentSection: FunctionalComponent<{
     onSubmit?: (input: string) => void;
 }> = ({ onSubmit }) => {
-    const [section, setSection] = useState<ContentSection>('url');
+    const [activeSection, setActiveSection] =
+        useState<ContentSectionType>('url');
 
-    const submitData = (input: string) => {
+    const handleInput = (input: string) => {
         if (onSubmit) onSubmit(input);
     };
+
+    const { Component: ActiveComponent } = sectionConfig.find(
+        (section) => section.key === activeSection
+    )!;
 
     return (
         <>
             <nav>
-                <button
-                    onClick={() => setSection('url')}
-                    className={section === 'url' ? 'active' : ''}
-                >
-                    URL
-                </button>
-                <button
-                    onClick={() => setSection('text')}
-                    className={section === 'text' ? 'active' : ''}
-                >
-                    Text
-                </button>
-                <button
-                    onClick={() => setSection('wifi')}
-                    className={section === 'wifi' ? 'active' : ''}
-                >
-                    WiFi
-                </button>
-                <button
-                    onClick={() => setSection('vcard')}
-                    className={section === 'vcard' ? 'active' : ''}
-                >
-                    vCard
-                </button>
-                <button
-                    onClick={() => setSection('calendar')}
-                    className={section === 'calendar' ? 'active' : ''}
-                >
-                    Calendar Event
-                </button>
-                <button
-                    onClick={() => setSection('email')}
-                    className={section === 'email' ? 'active' : ''}
-                >
-                    Email
-                </button>
-                <button
-                    onClick={() => setSection('sms')}
-                    className={section === 'sms' ? 'active' : ''}
-                >
-                    SMS
-                </button>
-                <button
-                    onClick={() => setSection('geo')}
-                    className={section === 'geo' ? 'active' : ''}
-                >
-                    Location
-                </button>
+                {sectionConfig.map(({ key, label }) => (
+                    <button
+                        key={key}
+                        onClick={() => setActiveSection(key)}
+                        className={key === activeSection ? 'active' : ''}
+                    >
+                        {label}
+                    </button>
+                ))}
             </nav>
 
-            {section === 'url' && (
-                <UrlInput onInput={(input) => submitData(input)} />
-            )}
-
-            {section === 'text' && (
-                <TextInput onInput={(input) => submitData(input)} />
-            )}
-
-            {section === 'wifi' && (
-                <WiFiInput onInput={(input) => submitData(input)} />
-            )}
-
-            {section === 'vcard' && (
-                <VCardInput onInput={(input) => submitData(input)} />
-            )}
-
-            {section === 'calendar' && (
-                <CalendarInput onInput={(input) => submitData(input)} />
-            )}
-
-            {section === 'email' && (
-                <EMailInput onInput={(input) => submitData(input)} />
-            )}
-
-            {section === 'sms' && (
-                <SmsInput onInput={(input) => submitData(input)} />
-            )}
-
-            {section === 'geo' && (
-                <GeoInput onInput={(input) => submitData(input)} />
-            )}
+            <ActiveComponent onInput={handleInput} />
         </>
     );
 };
